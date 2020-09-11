@@ -14,17 +14,10 @@ jobs:
 
     steps:
     - uses: actions/checkout@master
-
-    - name: Set up .NET Core
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: '3.1.102'
-
-    - name: Build with dotnet
-      run: dotnet build --configuration Release
-
-    - name: dotnet publish
-      run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
+    
+    - name: Download PowerShell Universal
+      shell: powershell
+      run: .\download.ps1
 
     - name: Deploy to Azure Web App
       uses: azure/webapps-deploy@v2
@@ -32,4 +25,4 @@ jobs:
         app-name: 'psu-example'
         slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_514774c9fda941c5ab7929173db1eb20 }}
-        package: ${{env.DOTNET_ROOT}}/myapp 
+        package: ./pu
