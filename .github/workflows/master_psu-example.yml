@@ -11,13 +11,13 @@ on:
 
 jobs:
   build-and-deploy:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@master
     
     - name: Download PowerShell Universal
-      shell: powershell
+      shell: pwsh
       run: .\download.ps1
 
     - name: Deploy to Azure Web App
