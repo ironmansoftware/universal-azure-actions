@@ -4,6 +4,7 @@
 name: Build and deploy ASP.Net Core app to Azure Web App - psu-example
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - master
